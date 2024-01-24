@@ -16,7 +16,7 @@ void setup() {
 
   // Print the IP
   Serial.println("Access Point started");
-  Serial.println("IP Address: " + WiFi.softAPIP().toString());/Users/filip/Documents/Arduino/dron/build/esp32.esp32.esp32/dron.ino.bin
+  Serial.println("IP Address: " + WiFi.softAPIP().toString());
 
   // Setup OTA
   AsyncElegantOTA.begin(&server);
