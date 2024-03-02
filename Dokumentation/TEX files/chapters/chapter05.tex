@@ -1,0 +1,10 @@
+V závěrečné kapitole navrhuji teoreticky vhodnější a funkční řešení tohoto projektu a popisuji změny, které provádím na hardwaru drona.
+
+\section{PCB}
+    U první verze tištěného spoje jsem neměl zkušenost s potřebnou velikosti samotné desky. V nové verzi jsou komponenty navzájem značně přiblíženy. Tím snížíme hmotnost drona o několik gramů a nebudeme plýtvat materiálem zbytečným volným místem na desce. Dále jsem opravil chybu, kde ESP pin EN nebyl na tištěném spoji připojen na 3,3V. Na samotném PCB jsem vyměnil jeden z regulátorů za Step-Down converter. Poslední úpravou je přidání přepínače před baterii, aby se dron mohl vypnout i jiným způsobem, než-li odpojením baterie.
+
+\section{Baterie}
+    Po testování drona na plný výkon jsem se rozhodl, že kapacita 780mAh má nevýhodný poměr vůči hmotnosti a pro druhou verzi drona jsem se rozhodl zvolit baterii o skoro poloviční kapacitě pro snížení hmotnosti ze 44g na 18g. Dron sice nebude schopen létat zdaleka tak dlouho, ale bude létat. Tato změna vyžaduje ještě jednu úpravu na PCB a to výměnu JST-XH 2pin za 3pin.
+
+\section{Vrtule}
+    Pro teoretické zlepšení tahu vyměním vrtule, za doporučené přímo na stránkách motoru\cite{motorv1} a to za trojlisté 48mm vrtule Micro Whoop. Je možné, že tento krok je zbytečný, ale z důvodu intenzivnějšího proudění vzduchu ho zvolím.

@@ -1,0 +1,76 @@
+\documentclass[11pt,a4paper,openright]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+\usepackage[czech]{babel}
+\usepackage[top=25mm,bottom=25mm,right=25mm,left=30mm,head=12.5mm,foot=12.5mm]{geometry}
+\usepackage{titlesec}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{fancyhdr}
+
+\usepackage[sorting=none,backend=bibtex]{biblatex}
+\bibliography{biblio.bib}
+
+\titleformat{\chapter}[block]{\bfseries\Huge}{}{0em}{}
+\titleformat{\section}[hang]{\bfseries\Large}{}{1em}{\thesection\enspace}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{CheapCopter}
+\fancyhead[L]{\thechapter. Kapitola}
+\fancyfoot[C]{\textbf{\thepage}}
+\fancypagestyle{plain}{%  the preset of fancyhdr
+    \fancyhf{} % clear all header and footer fields
+    \fancyfoot[C]{\textbf{\thepage}} % except the center
+    \renewcommand{\headrulewidth}{0pt}
+    \renewcommand{\footrulewidth}{0pt}}
+
+\title{CheapCopter}
+
+\author{Filip Roček}
+
+\date{\today}
+
+\renewcommand*\contentsname{Obsah}
+
+\begin{document}
+
+\input{titlepage}
+
+\input{affirmation}
+
+\tableofcontents
+
+\chapter{Abstrakt}
+\input{abstract}
+
+\chapter{Výběr součástek}
+\input{chapters/chapter01}
+
+\chapter{Tištěný spoj}
+\input{chapters/chapter02}
+
+\chapter{Tělo drona}
+\input{chapters/chapter03}
+
+\chapter{Použití}
+\input{chapters/chapter04}
+
+\chapter{Verze 2.0}
+\input{chapters/chapter05}
+
+\chapter{Závěr}
+\input{conclusion.tex}
+
+\newpage
+
+\chapter{Reference}
+
+\makeatletter
+\renewcommand{\chapter}{\@gobbletwo}
+\makeatother
+
+\printbibliography
+
+\end{document}
