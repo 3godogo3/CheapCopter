@@ -1,36 +1,23 @@
 V této kapitole si popíšeme jak dron ovládat a zdali opravdu funguje.
 
 \section{Připojení se}
-    Po zapojení baterie se dron automaticky zapne. Několik vteřin na to se vytvoří Wi-Fi access point, který se základně jmenuje "Drone" a lze se k němu připojit za pomocí hesla "password". Jak jméno, tak heslo pro AP se dá změnit v kódu přepsáním proměnných *ssid a *password. Pro možnost nahrání upraveného kódu na ESP, si otevřete webový interface na adrese 192.168.4.1/update. Zde můžete nahrát vámi upravenou binárku. Pro možnost ovládání drona, se musíte připojit přes protokol Telnet v příkazové řádce či jiném programu, jako například PuTTY, podporující Telnet. V našem případě budem používat samotnou příkazovou řádku. Pokud nemáte už Telnet nainstalovaný, postupujte dle návodu na stránce \parencite[Telnet download tutorial]{telnet}. Za pomocí následujícího příkladu započnete vzdálenou komunikaci s dronem.
-    
-    \begin{lstlisting}
-
-    $ telnet 192.168.4.1 23
-    # Trying 192.168.4.1...
-    # Connected to 192.168.4.1.
-    # Escape character is '^]'.
-
-    \end{lstlisting}
-
-\newpage
+    Po zapojení baterie se dron automaticky zapne. Několik vteřin na to se vytvoří Wi-Fi access point, který se základně jmenuje "Drone" a lze se k němu připojit za pomocí hesla "password". Jak jméno, tak heslo pro AP se dá změnit v kódu přepsáním proměnných *ssid a *password. Návod na nahrání upraveného kódu se podívejte do kapitoly 4.3. Pokud dron chcete ovládat, je zapotřebí se na tento AP připojit. Veškeré ovládání poté najdete ve vašem webovém prohlížeci na  adrese "192.168.4.1". K ovládání doporučuji používat mobilního telefonu, ale je možné využít i počítače.
 
 \section{Ovládání}
-    V tento moment můžete používat všechny nastavené příkazy.\\ Mezi tyto příkazy patří:\par "w" pro let dopředu,\par "s" pro let dozadu,\par "d" pro let do prava,\par "a" pro let do leva,\par "r" pro let nahoru a\par "f" pro let dolu.
+    Na webové stránce vidíte jednoduché GUI, s devíti tlačítky - osm na samotné ovládání drona a jedno na updatování firmware. Pro zapnutí motorů drona zmáčkněte tlačítko "ON". Dále pro vzlédnutí využijte levého dolního tlačítka "UP" a pro pokles tlačítka "DOWN". Pro pohyb do stran využijte čtyři tlačítka určena pro každý ze čtyř základních směrů.
+    
+\vspace{5mm}
 
-    \begin{lstlisting}
-
-    $ w
-    # Received command forwards
-    $ a
-    # Recieved command left
-    $ s
-    # Recieved command backwards
-    $ r
-    # Recieved command up
-       
-    \end{lstlisting}
+    \begin{figure}[h]
+        \centering
+        \includegraphics[scale=0.4]{img/gui.png}
+        \caption{Webové rozhraní}
+    \end{figure}
 
 \newpage
+    
+\section{Updatování}
+    Změnu firmware provádějte pouza na vlastní nebezpečí. Přepsání jakékoliv části základního kódu může způsobit nefunkčnost drona. Pokud jste se rozhodli si kód jakkoliv upravit, můžete ho jednoduše nahrát přes webové rozhraní. Pokud se nacházíte na ovládacím panelu popsaném v předchozí části, zmáčkněte dolní tlačítka "Upload Firmware". Toto vás přesměruje do updatovacího rozharní. Zaškrtněte políčko "Firmware" a vyberte binárku s vaším kódem. Během procesu flashování NEODPOJUJTE dron od baterie.
 
 \section{Skutečné použití}
      I přes veškerou snahu se dron není schopen sám zvednout. Je tomu tak z důvodu příliš vysoké hmotnosti drona, ze kterého motory nemají dostatečný tah pro vzlet. Více než polovina hmotnosti je tvořena samotnou baterií. Dále by bylo dobré zvážit použití jiných vrtulí. Všechny ostatní funkce fungují. Jediné co by na dronu s nižší hmotností bylo potřeba doladit jsou konstanty u vyvažování pomocí gyroskopu a základní rychlost motorů, kterou se otáčejí bez zadaných příkazů.
