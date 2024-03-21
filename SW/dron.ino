@@ -264,32 +264,33 @@ void loop() {
   // OTA updates
   AsyncElegantOTA.loop();
 
-  // Calculate motor speed
-  mpu.update();
-  float roll = mpu.getAngleY();
-  float pitch = mpu.getAngleX();
-
-  float pidPitch = kp * pitch + ki * integralPitch + kd * (pitch - lastErrorPitch);
-  float pidRoll = kp * roll + ki * integralRoll + kd  * (roll - lastErrorRoll);
-
-  integralPitch += pitch;
-  integralRoll += roll;
-
-  lastErrorPitch = pitch;
-  lastErrorRoll = roll;
-
-  motorSpeed1 = 100 + (int)pidPitch - (int)pidRoll + backward + right + up - down;
-  motorSpeed2 = 100 - (int)pidPitch - (int)pidRoll + backward + left + up - down;
-  motorSpeed3 = 100 - (int)pidPitch + (int)pidRoll + forward + right + up - down;
-  motorSpeed4 = 100 + (int)pidPitch + (int)pidRoll + forward + left + up - down;
-
-  motorSpeed1 = constrain(motorSpeed1, 0, 255);
-  motorSpeed2 = constrain(motorSpeed2, 0, 255);
-  motorSpeed3 = constrain(motorSpeed3, 0, 255);
-  motorSpeed4 = constrain(motorSpeed4, 0, 255);
- 
-  // Set motor speeds
   if(status){
+    // Calculate motor speed
+    mpu.update();
+    float roll = mpu.getAngleY();
+    float pitch = mpu.getAngleX();
+
+    float pidPitch = kp * pitch + ki * integralPitch + kd * (pitch - lastErrorPitch);
+    float pidRoll = kp * roll + ki * integralRoll + kd  * (roll - lastErrorRoll);
+
+    integralPitch += pitch;
+    integralRoll += roll;
+
+    lastErrorPitch = pitch;
+    lastErrorRoll = roll;
+
+    motorSpeed1 = 100 + (int)pidPitch - (int)pidRoll + backward + right + up - down;
+    motorSpeed2 = 100 - (int)pidPitch - (int)pidRoll + backward + left + up - down;
+    motorSpeed3 = 100 - (int)pidPitch + (int)pidRoll + forward + right + up - down;
+    motorSpeed4 = 100 + (int)pidPitch + (int)pidRoll + forward + left + up - down;
+
+    motorSpeed1 = constrain(motorSpeed1, 0, 255);
+    motorSpeed2 = constrain(motorSpeed2, 0, 255);
+    motorSpeed3 = constrain(motorSpeed3, 0, 255);
+    motorSpeed4 = constrain(motorSpeed4, 0, 255);
+  
+    // Set motor speeds
+  
     ledcWrite(1, motorSpeed1);
     ledcWrite(2, motorSpeed2);
     ledcWrite(3, motorSpeed3);

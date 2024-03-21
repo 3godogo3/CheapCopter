@@ -1,52 +1,46 @@
 \documentclass[11pt,a4paper,openright]{report}
-\usepackage[utf8]{inputenc}
-\usepackage{graphicx}
-\graphicspath{ {images/} }
-\usepackage[czech]{babel}
+
 \usepackage[top=25mm,bottom=25mm,right=25mm,left=30mm,head=12.5mm,foot=12.5mm]{geometry}
-\usepackage{titlesec}
-\usepackage{amsmath}
-\usepackage{listings}
-\usepackage{fancyhdr}
+\let\openright=\cleardoublepage
 
-\usepackage[sorting=none,backend=bibtex]{biblatex}
-\bibliography{biblio.bib}
+\input{macros}
 
-\titleformat{\chapter}[block]{\bfseries\Huge}{}{0em}{}
-\titleformat{\section}[hang]{\bfseries\Large}{}{1em}{\thesection\enspace}
+\def\NazevPrace{CheapCopter}
+\def\Trida{4.A}
+\def\AutorPrace{Filip Roček}
+\def\DatumOdevzdani{2024}
 
-\pagestyle{fancy}
-\fancyhf{}
-\fancyhead[R]{CheapCopter}
-\fancyhead[L]{\thechapter. Kapitola}
-\fancyfoot[C]{\textbf{\thepage}}
-\fancypagestyle{plain}{%  the preset of fancyhdr
-    \fancyhf{} % clear all header and footer fields
-    \fancyfoot[C]{\textbf{\thepage}} % except the center
-    \renewcommand{\headrulewidth}{0pt}
-    \renewcommand{\footrulewidth}{0pt}}
+% Vedoucí práce: Jméno a příjmení s~tituly
+\def\Vedouci{Emil Miler}
 
-\title{CheapCopter}
+% Text čestného prohlášení
+\def\Prohlaseni{Prohlašuji, že jsem svou práci vypracoval samostatně a použil jsem pouze prameny a literaturu
+uvedené v~seznamu bibliografických záznamů. Nemám žádné námitky proti zpřístupňování této práce v~souladu se
+zákonem č. 121/2000 Sb. o~právu autorském, o~právech souvisejících s~právem autorským a
+o~změně některých zákonů (autorský zákon) ve znění pozdějších předpisů.}
 
-\author{Filip Roček}
+\def\Abstrakt{Tato práce shrnuje tvorbu vlastního drona, kterého si kdokoliv se základními znalostmi pájení, dokáže doma vyrobit.
 
-\date{\today}
+První část se zaobírá volbou vhodných komponent pro funkčnost tohoto projektu a jejich využitím.
 
-\renewcommand*\contentsname{Obsah}
+Druhá kapitola rozebírá tvorbu a úpravou vlastního tištěného spoje, který propojuje všechny komponenty drona.
+
+Třetí oddíl pojednává o součástích tvořených s pomocí 3D tiskárny, ucelujících celý projekt.
+
+Poslední část řeší skutečné použití a fungčnost vytvořeného drona.}
 
 \begin{document}
 
-\input{titlepage}
+\include{titlepage}
 
-\input{affirmation}
-
+% Obsah
+\setcounter{tocdepth}{2}
 \tableofcontents
-
-\chapter{Abstrakt}
-\input{abstract}
 
 \chapter{Výběr součástek}
 \input{chapters/chapter01}
+\pagestyle{fancy}
+
 
 \chapter{Tištěný spoj}
 \input{chapters/chapter02}
@@ -60,17 +54,11 @@
 \chapter{Verze 2.0}
 \input{chapters/chapter05}
 
-\chapter{Závěr}
-\input{conclusion.tex}
+\chapter*{Závěr}
+\input{chapters/conclusion.tex}
 
-\newpage
-
-\chapter{Reference}
-
-\makeatletter
-\renewcommand{\chapter}{\@gobbletwo}
-\makeatother
-
-\printbibliography
+%%% Seznam použité literatury
+\nocite{einstein}\nocite{latexcompanion}\nocite{knuthwebsite}
+\printbibliography[title={Seznam použité literatury},heading={bibintoc}]
 
 \end{document}
